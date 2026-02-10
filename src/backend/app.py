@@ -9,11 +9,12 @@ CORS(app)
 
 
 # Load data once
-prices = pd.read_csv("../../data/raw/BrentOilPrices.csv", parse_dates=["Date"])
-events = pd.read_csv("../../data/raw/oil_market_events.csv", parse_dates=["Date"])
+prices = pd.read_csv("data/raw/BrentOilPrices.csv")
+events = pd.read_csv("data/raw/oil_market_events.csv")
+prices["Date"] = pd.to_datetime(prices["Date"], format='mixed')
+events["Date"] = pd.to_datetime(events["Date"], format='mixed')
 
-
-with open("../../data/raw/change_points.json") as f:
+with open("data/raw/change_points.json") as f:
     change_points = json.load(f)
 
 
